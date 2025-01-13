@@ -1,3 +1,4 @@
+//go:build windows
 // +build windows
 
 package taskmaster
@@ -176,6 +177,8 @@ func (t *TaskService) GetRegisteredTasks() (RegisteredTaskCollection, error) {
 			return fmt.Errorf("error parsing registered task %s: %v", path, err)
 		}
 		registeredTasks = append(registeredTasks, registeredTask)
+
+		task.Release()
 
 		return nil
 	})
